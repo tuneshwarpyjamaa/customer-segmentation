@@ -1,0 +1,78 @@
+# Customer Segmentation Project Configuration
+
+# Data Configuration
+data:
+  raw_path: "data/raw/OnlineRetail.xlsx"
+  processed_path: "data/processed/"
+  chunk_size: 50000  # Number of rows to process at once
+  
+# Column Names (update if your data has different column names)
+columns:
+  customer_id: "CustomerID"
+  invoice_no: "InvoiceNo"
+  invoice_date: "InvoiceDate"
+  quantity: "Quantity"
+  unit_price: "UnitPrice"
+  description: "Description"
+  country: "Country"
+
+# Data Cleaning Configuration
+cleaning:
+  remove_outliers: true
+  outlier_multiplier: 3.0  # IQR multiplier (1.5 = standard, 3.0 = more lenient)
+  min_quantity: 1
+  min_price: 0
+  
+# RFM Configuration
+rfm:
+  n_quantiles: 5  # Number of quantiles for scoring (5 = quintiles)
+  
+# Segmentation Rules (you can customize these)
+segments:
+  champions:
+    r_min: 4
+    f_min: 4
+    m_min: 4
+  loyal:
+    r_min: 3
+    f_min: 3
+    m_min: 3
+  at_risk:
+    r_max: 2
+    f_min: 3
+    m_min: 3
+
+# Output Configuration
+output:
+  reports_dir: "outputs/reports/"
+  figures_dir: "outputs/figures/"
+  save_formats:
+    - "csv"
+    - "html"
+  top_customers_count: 100  # Number of top customers to identify
+
+# Visualization Configuration
+visualization:
+  color_scheme: "Viridis"  # Plotly color scale
+  figure_height: 600
+  figure_width: 1000
+  dpi: 100  # For static plots
+
+# Dashboard Configuration
+dashboard:
+  host: "0.0.0.0"
+  port: 8050
+  debug: true
+  title: "Customer Segmentation Dashboard"
+
+# Performance Configuration
+performance:
+  use_multiprocessing: false  # Set to true for parallel processing
+  n_workers: 4  # Number of workers for multiprocessing
+  memory_limit_mb: 2000  # Maximum memory usage in MB
+  
+# Logging Configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/customer_segmentation.log"
