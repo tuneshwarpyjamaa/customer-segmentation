@@ -2,7 +2,7 @@ services:
   - type: web
     name: customer-segmentation-dashboard
     runtime: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install --upgrade pip setuptools wheel && pip install -r requirements.txt
     startCommand: python src/dashboard.py
     envVars:
       - key: PYTHONPATH
