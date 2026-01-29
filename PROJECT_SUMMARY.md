@@ -233,12 +233,10 @@ python src/dashboard.py
 - **GitHub**: [Project Repository](https://github.com/yourusername/customer-segmentation-project)
 - **Issues**: Report bugs or request features
 - **Discussions**: Ask questions or share ideas
-- **Email**: your.email@example.com
+- **Email**: amishharsoor003@gmail.com
 
 ## 📄 License
 
 MIT License - See `LICENSE` file for details
 
 ---
-
-**Ready to dive in?** Start with `QUICKSTART.md` for a step-by-step guide!

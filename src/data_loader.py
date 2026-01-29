@@ -148,7 +148,8 @@ class DataLoader:
             usecols=usecols,
             dtype=dtype,
             chunksize=self.chunk_size,
-            low_memory=False
+            low_memory=False,
+            encoding='latin1'
         )
         
         for chunk in tqdm(chunk_iter, desc="Processing chunks"):

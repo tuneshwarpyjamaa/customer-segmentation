@@ -17,12 +17,12 @@ class RFMAnalyzer:
     RFM Analysis implementation for customer segmentation.
     """
     
-    def __init__(self, df: pd.DataFrame, customer_col: str = 'CustomerID', 
+    def __init__(self, df: pd.DataFrame, customer_col: str = 'CustomerID',
                  date_col: str = 'InvoiceDate', amount_col: str = 'TotalAmount',
                  invoice_col: str = 'InvoiceNo'):
         """
         Initialize RFM Analyzer.
-        
+
         Args:
             df: Cleaned transaction DataFrame
             customer_col: Customer identifier column
@@ -35,9 +35,12 @@ class RFMAnalyzer:
         self.date_col = date_col
         self.amount_col = amount_col
         self.invoice_col = invoice_col
-        
+
         # Reference date for recency calculation (last date in dataset + 1 day)
-        self.reference_date = df[date_col].max() + timedelta(days=1)
+        if not df.empty and date_col in df.columns:
+            self.reference_date = df[date_col].max() + timedelta(days=1)
+        else:
+            self.reference_date = None
         
     def calculate_rfm_metrics(self) -> pd.DataFrame:
         """
