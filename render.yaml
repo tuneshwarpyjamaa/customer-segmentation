@@ -1,7 +1,7 @@
 services:
   - type: web
     name: customer-segmentation-dashboard
-    runtime: python3
+    runtime: python
     buildCommand: pip install -r requirements.txt
     startCommand: python src/dashboard.py
     envVars:
@@ -9,3 +9,5 @@ services:
         value: src
       - key: PORT
         value: 10000
+      - key: PYTHON_VERSION
+        value: 3.8
