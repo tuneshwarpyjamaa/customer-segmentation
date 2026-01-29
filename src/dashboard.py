@@ -14,6 +14,7 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 import warnings
+import os
 warnings.filterwarnings('ignore')
 
 # Import our modules
@@ -535,10 +536,11 @@ def create_heatmap():
 
 # Run the app
 if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 8050))
     print("\n" + "="*80)
     print("STARTING DASHBOARD SERVER")
     print("="*80)
-    print("\n📊 Dashboard is running at: http://localhost:8050")
+    print(f"\n📊 Dashboard is running at: http://0.0.0.0:{port}")
     print("   Press Ctrl+C to stop the server\n")
-    
-    app.run_server(debug=True, host='0.0.0.0', port=8050)
+
+    app.run_server(debug=False, host='0.0.0.0', port=port)
