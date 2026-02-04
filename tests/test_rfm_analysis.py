@@ -174,11 +174,18 @@ def test_identify_high_value_customers(sample_transaction_data):
 
 def test_rfm_with_empty_dataframe():
     """Test RFM calculation with edge cases."""
-    # Empty DataFrame
+    # Empty DataFrame - should return empty DataFrame gracefully
     empty_df = pd.DataFrame(columns=['CustomerID', 'InvoiceDate', 'InvoiceNo', 'TotalAmount'])
     
-    with pytest.raises(Exception):
-        calculate_rfm(empty_df)
+    result = calculate_rfm(empty_df)
+    
+    # Should return an empty DataFrame with the expected columns
+    assert isinstance(result, pd.DataFrame)
+    assert len(result) == 0
+    assert 'CustomerID' in result.columns
+    assert 'Recency' in result.columns
+    assert 'Frequency' in result.columns
+    assert 'Monetary' in result.columns
 
 
 def test_rfm_score_ranges(sample_transaction_data):
