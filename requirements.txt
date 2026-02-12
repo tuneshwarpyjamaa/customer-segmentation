@@ -1,5 +1,9 @@
+# Build Dependencies (required for pandas source build)
+setuptools
+wheel
+
 # Core Data Processing
-pandas==2.0.3
+pandas==2.2.3
 numpy==1.24.3
 
 # Visualization
