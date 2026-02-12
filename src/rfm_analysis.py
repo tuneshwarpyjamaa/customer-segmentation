@@ -170,7 +170,8 @@ class RFMAnalyzer:
                 return 'Lost'
         
         rfm['Segment'] = rfm.apply(segment_customer, axis=1)
-        rfm['Segment'] = rfm['Segment'].astype('category')
+        # Only convert to categories that actually exist in the data
+        rfm['Segment'] = pd.Categorical(rfm['Segment'], categories=rfm['Segment'].unique())
         
         # Count customers in each segment
         segment_counts = rfm['Segment'].value_counts().sort_values(ascending=False)
